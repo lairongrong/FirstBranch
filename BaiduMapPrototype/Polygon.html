@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<style type="text/css">
+body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;}
+#l-map{height:100%;width:78%;float:left;border-right:2px solid #bcbcbc;}
+#r-result{height:100%;width:20%;float:right;}
+</style>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=69X8gGCmeUVeh6xtXLUa31ji"></script>
+<title>鼠标点击拾取坐标</title>
+</head>
+<body>
+    <h2>拉框搜索小区</h2>
+    <div style="width:800px;height:600px;border:1px solid gray" id="bmap">
+    </div>
+    <input type="button" value="开启" onclick="pullBox.open();" />
+    <input type="button" value="关闭" onclick="pullBox.close();" />
+    <div id="result" style="width:800px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif; overflow:auto;"></div>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/SearchInRectangle/1.2/src/SearchInRectangle_min.js"></script>
+   
+    <script type="text/javascript">
+        var map = new BMap.Map("bmap");
+        map.centerAndZoom("南京",15); 
+        var keyword = "小区" ;
+        var pullBox = new BMapLib.SearchInRectangle(map,keyword,{
+            renderOptions:{
+                map: map,
+                strokeWeight: 2,
+                strokeColor: "red",
+                opacity: 0.7,                
+                followText: "拖拽鼠标搜索"+ keyword +"",
+                autoClose: false,
+                autoViewport: false,
+                panel: "result",
+                selectFirstResult: true
+            }
+        }); 
+        pullBox.setFillColor("white");
+        pullBox.setLineStyle("dashed");
+    
+    </script>
+ </body>
+ </html>
+ 
+
